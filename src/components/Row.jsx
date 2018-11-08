@@ -7,7 +7,7 @@ export default class Game extends Component {
     const width = 20
     const tiles = []
     for (var x = 0; x < width; x++) {
-      tiles.push(<Tile x={x} key={x}></Tile>)
+      tiles.push(<Tile x={x} key={x} snake={this.props.snakePos.x === x && this.props.snakePos.y === this.props.y}></Tile>)
     }
     return (
       <div className="row">

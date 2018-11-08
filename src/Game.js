@@ -36,20 +36,35 @@ export default class Game extends Component {
             },
             lettersCollected: ["o"],
         })
+
+        setInterval(() => {
+            const snakeState = {...this.state.snake}
+            snakeState.history.push({x: this.getSnakePosition().x + this.state.snake.facing.x,
+                                     y: this.getSnakePosition().y + this.state.snake.facing.y})
+            this.setState({snake: snakeState})
+        }, 500)
+    }
+
+    getSnakePosition = () => {
+        return this.state.snake.history[this.state.snake.history.length - 1]
     }
 
     render() {
-        return (
-            <div className = "App" >
-                <Nav />
-                <div className = 'row'>
-                    <div className = 'column'>
-                        <Board />
-                        <CurrentWord />
+        if (this.state && this.state.snake) {
+            return (
+                <div className = "App" >
+                    <Nav />
+                    <div className = 'row'>
+                        <div className = 'column'>
+                            <Board snakePos={this.getSnakePosition()} />
+                            <CurrentWord />
+                        </div>
+                        <CompletedWords />
                     </div>
-                    <CompletedWords />
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return "I dunno what's happening"
+        }
     }
 }
