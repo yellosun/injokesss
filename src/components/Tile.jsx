@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 export default class Tile extends Component {
   render() {
-    if (this.props.snake)
-      console.log("snake!")
     return (
       <div className="tile">
           

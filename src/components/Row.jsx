@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Tile from './Tile'
 
-export default class Game extends Component {
+export default class Row extends Component {
   render() {
 
     const width = 20
