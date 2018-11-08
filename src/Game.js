@@ -16,7 +16,34 @@ export default class Game extends Component {
                     {x: 4, y: 16},
                 ]
             },
-            injokes: [],
+            injokes: [
+                "thejonathan",
+                "welcome,",
+                "hormones",
+                "woich",
+                "injoke",
+                "booleanicing",
+                "sneezecounttwo",
+                "smoothyisthicc",
+                "flowflowflow",
+                "herpe",
+                "forkreposgitmoney",
+                "twoandawoo",
+                "ghostsushi",
+                "bananas",
+                "cake",
+                "vent",
+                "tank",
+                "friendship",
+                "ilovemyjob",
+                "leaderboard",
+                "cookies",
+                "finger",
+                "howwastrivia",
+                "blaugs",
+                "pong",
+                "orangeroughness"
+            ],
             currentWord: {
                 word: "flow",
                 letters: [
@@ -40,8 +67,17 @@ export default class Game extends Component {
         setInterval(() => {
             console.log(this.getSnakePosition())
             const snakeState = {...this.state.snake}
-            snakeState.history.push({x: this.getSnakePosition().x + this.state.snake.facing.x,
-                                     y: this.getSnakePosition().y + this.state.snake.facing.y})
+            const newPos = {x: this.getSnakePosition().x + this.state.snake.facing.x,
+                            y: this.getSnakePosition().y + this.state.snake.facing.y}
+            if (newPos.x > 19)
+                newPos.x = 0
+            if (newPos.x < 0)
+                newPos.x = 19
+            if (newPos.y > 19)
+                newPos.y = 0
+            if (newPos.y < 0)
+                newPos.y = 19
+            snakeState.history.push(newPos)
             this.setState({snake: snakeState})
         }, 300)
     }
