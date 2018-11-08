@@ -7,7 +7,12 @@ export default class Row extends Component {
     const width = 20
     const tiles = []
     for (var x = 0; x < width; x++) {
-      tiles.push(<Tile x={x} key={x} snake={this.props.snakePos.x === x && this.props.snakePos.y === this.props.y}></Tile>)
+      tiles.push(<Tile
+                    x={x}
+                    key={x}
+                    snake={this.props.snakePos.x === x && this.props.snakePos.y === this.props.y}
+                    snakeFacing={this.props.snakeFacing}
+                  />)
     }
     return (
       <div className="row">

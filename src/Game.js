@@ -43,7 +43,7 @@ export default class Game extends Component {
             snakeState.history.push({x: this.getSnakePosition().x + this.state.snake.facing.x,
                                      y: this.getSnakePosition().y + this.state.snake.facing.y})
             this.setState({snake: snakeState})
-        }, 100)
+        }, 300)
     }
 
     getSnakePosition = () => {
@@ -78,7 +78,7 @@ export default class Game extends Component {
                     <Nav />
                     <div className = 'row'>
                         <div className = 'column'>
-                            <Board snakePos={this.getSnakePosition()}/>
+                            <Board snakePos={this.getSnakePosition()} snakeFacing={this.state.snake.facing}/>
                             <CurrentWord />
                         </div>
                         <CompletedWords />
