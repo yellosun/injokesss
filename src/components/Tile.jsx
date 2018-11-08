@@ -3,6 +3,17 @@ import React, { Component } from 'react'
 export default class Tile extends Component {
   render() {
     let image = "woodTile.jpg"
+
+    let letterInTile = null
+    if (this.props.currentWord !== null) {
+      for (const letter of this.props.currentWord.letters) {
+        if (letter.position.x === this.props.x && letter.position.y === this.props.y) {
+          letterInTile = letter.letter
+          break
+        }
+      }
+    }
+
     if (this.props.snake) {
       if (this.props.snakeFacing.x === 0 && this.props.snakeFacing.y === 1)
         image = "snakeDown.png"
@@ -15,7 +26,7 @@ export default class Tile extends Component {
     }
     return (
       <div className="tile">
-        <img src={require(`../images/${image}`)} alt="some thing"/>
+        {letterInTile !== null ? letterInTile : <img src={require(`../images/${image}`)} alt="some thing"/>}
       </div>
     );
   }
