@@ -36,20 +36,57 @@ export default class Game extends Component {
             },
             lettersCollected: ["o"],
         })
+
+        setInterval(() => {
+            console.log(this.getSnakePosition())
+            const snakeState = {...this.state.snake}
+            snakeState.history.push({x: this.getSnakePosition().x + this.state.snake.facing.x,
+                                     y: this.getSnakePosition().y + this.state.snake.facing.y})
+            this.setState({snake: snakeState})
+        }, 100)
+    }
+
+    getSnakePosition = () => {
+        return this.state.snake.history[this.state.snake.history.length - 1]
+    }
+
+    onKeyDown = (event) => {
+        const snakeState = {...this.state.snake}
+        switch (event.key) {
+            case "ArrowUp":
+                snakeState.facing = {x: 0, y: -1}
+                break;
+            case "ArrowDown":
+                snakeState.facing = {x: 0, y: 1}
+                break;
+            case "ArrowLeft":
+                snakeState.facing = {x: -1, y: 0}
+                break;
+            case "ArrowRight":
+                snakeState.facing = {x: 1, y: 0}
+                break;
+            default:
+
+        }
+        this.setState({snake: snakeState})
     }
 
     render() {
-        return (
-            <div className = "App" >
-                <Nav />
-                <div className = 'row'>
-                    <div className = 'column'>
-                        <Board />
-                        <CurrentWord />
+        if (this.state && this.state.snake) {
+            return (
+                <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
+                    <Nav />
+                    <div className = 'row'>
+                        <div className = 'column'>
+                            <Board snakePos={this.getSnakePosition()}/>
+                            <CurrentWord />
+                        </div>
+                        <CompletedWords />
                     </div>
-                    <CompletedWords />
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return "I dunno what's happening"
+        }
     }
 }
