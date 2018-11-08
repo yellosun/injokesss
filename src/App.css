@@ -1,13 +1,18 @@
 .board {
-  margin: 0px 30px;
+    margin: 0px 30px;
+    display: flex;
 }
 
 .row {
-  height: 64px;
+    height: 30px;
 }
 
 .tile {
-  width: 64px;
-  height: 100%;
-  border: 1px grey solid;
+    width: 30px;
+    height: 100%;
+    border: 1px grey solid;
+}
+
+.tile img {
+    height: 100%;
 }
