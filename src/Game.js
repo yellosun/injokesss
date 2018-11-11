@@ -42,7 +42,9 @@ export default class Game extends Component {
                 "howwastrivia",
                 "blaugs",
                 "pong",
-                "orangeroughness"
+                "orangeroughness",
+                "holistichelp",
+                "isthatpapyrus"
             ],
             currentWord: null,
             lettersCollected: ["o"],
