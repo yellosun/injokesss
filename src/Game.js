@@ -44,20 +44,47 @@ export default class Game extends Component {
                 "pong",
                 "orangeroughness",
                 "holistichelp",
-                "isthatpapyrus"
+                "isthatpapyrus",
+                "nickcringeface"
             ],
             currentWord: null,
-            lettersCollected: ["o"],
+            lettersCollected: [""],
         })
 
         setInterval(this.runGameLoop, 300)
     }
 
     runGameLoop = () => {
+        const { currentWord, lettersCollected } = this.state
         this.updateSnakePosition()
-        if (this.state.currentWord === null /*|| this.state.lettersCollected.length === this.state.currentWord.word.length*/) {
+        if (currentWord === null) {
             this.glitterMyBoard()
         }
+
+        const letterNomd = this.onTopOfLetters()
+        this.setState({ lettersCollected: [...lettersCollected, letterNomd] })
+
+        if (letterNomd !== undefined) {
+            this.nomLetter(currentWord, letterNomd)
+        }
+    }
+
+    nomLetter = (currentWord, letterNom) => {
+        const newLetter = {...letterNom}
+        newLetter.eaten = true
+
+        const newCurrentWord = {...currentWord}
+        newCurrentWord.letters = [...newCurrentWord.letters]
+        newCurrentWord.letters[newCurrentWord.letters.indexOf(letterNom)] = {...newLetter}
+        this.setState({currentWord: newCurrentWord}, () => console.log(this.state.currentWord))
+    }
+
+    onTopOfLetters = () => {
+        return (
+            this.state.currentWord.letters.find(letter=> {
+                return letter.position.x ===  this.getSnakePosition().x && letter.position.y === this.getSnakePosition().y
+            })
+        )
     }
 
     glitterMyBoard = () => {
@@ -69,7 +96,8 @@ export default class Game extends Component {
             takenPositions[JSON.stringify(position)] = true
             newCurrentWord.letters.push({
                 letter: letter,
-                position: position
+                position: position,
+                eaten: false
             })
         }
         this.setState({currentWord: newCurrentWord})
