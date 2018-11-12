@@ -4,6 +4,7 @@ import Board from './components/Board'
 import Nav from './components/Nav'
 import CurrentWord from './components/CurrentWord'
 import CompletedWords from './components/CompletedWords'
+import { injokes } from './data/injokes';
 
 export default class Game extends Component {
     componentDidMount() {
@@ -16,37 +17,7 @@ export default class Game extends Component {
                     {x: 4, y: 16},
                 ]
             },
-            injokes: [
-                "thejonathan",
-                "welcome,",
-                "hormones",
-                "woich",
-                "injoke",
-                "booleanicing",
-                "sneezecounttwo",
-                "smoothyisthicc",
-                "flowflowflow",
-                "herpe",
-                "forkreposgitmoney",
-                "twoandawoo",
-                "ghostsushi",
-                "bananas",
-                "cake",
-                "vent",
-                "tank",
-                "friendship",
-                "ilovemyjob",
-                "leaderboard",
-                "cookies",
-                "finger",
-                "howwastrivia",
-                "blaugs",
-                "pong",
-                "orangeroughness",
-                "holistichelp",
-                "isthatpapyrus",
-                "nickcringeface"
-            ],
+            injokes: injokes,
             currentWord: null,
             lettersCollected: [],
         })
