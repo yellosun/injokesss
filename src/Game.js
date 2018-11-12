@@ -128,8 +128,7 @@ export default class Game extends Component {
     }
 
     render() {
-        if (this.state && this.state.snake) {
-            console.log(this.state.currentWord)
+        if (this.state && this.state.snake && this.state.currentWord) {
             return (
                 <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
                     <Nav />
@@ -138,7 +137,7 @@ export default class Game extends Component {
                             <Board snakePos={this.getSnakePosition()}
                                    snakeFacing={this.state.snake.facing}
                                    currentWord={this.state.currentWord} />
-                            <CurrentWord />
+                               <CurrentWord currentWord={this.state.currentWord}/>
                         </div>
                         <CompletedWords />
                     </div>

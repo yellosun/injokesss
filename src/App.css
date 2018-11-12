@@ -16,3 +16,7 @@
 .tile img {
     height: 100%;
 }
+
+.current-word {
+    text-align: center;
+}
