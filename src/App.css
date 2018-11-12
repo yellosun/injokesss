@@ -20,3 +20,7 @@
 .current-word {
     text-align: center;
 }
+
+.current-word.papyrus {
+    font-family: "papyrus";
+}
