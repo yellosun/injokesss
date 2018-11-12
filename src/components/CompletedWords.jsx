@@ -1,27 +1,30 @@
 import React, {Component} from 'react'
 import Card from '@material-ui/core/Card'
-import PropTypes from 'prop-types'
+import Score from '../components/Score'
+import Badge from '@material-ui/core/Badge'
 
 const styles = {
-    card: {
-        minWidth: 275,
-        height: 500
-    },
-    title: {
-        fontSize: 20,
-    },
     completed: {
         fontSize: 16,
-        color: 'green',
+        color: '#33ab9f',
+        paddingTop: 20,
     }
 }
 
 export default class CompletedWords extends Component {
     render() {
         return (
-            <Card style={styles.card}>
-                <div style={styles.title}>Completed</div>
-                <div className="completed-list" style={styles.completed}>{this.props.words.map(word => <div key={word}>{word}<br/></div>)}</div>
+            <Card className="completed-card">
+                <div className='card-header'>
+                    <div className="card-title">Completed</div>
+                    <Score wordsCompleted={this.props.words}/>
+                </div>
+
+                <div>
+                    {this.props.words.map(word => {
+                        return <div key={word} style={styles.completed}>{word}</div>
+                    })}
+                </div>
             </Card>
         )
     }

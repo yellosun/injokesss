@@ -5,7 +5,6 @@ import Nav from './components/Nav'
 import CurrentWord from './components/CurrentWord'
 import CompletedWords from './components/CompletedWords'
 import { injokes } from './data/injokes';
-import Score from './components/Score';
 
 export default class Game extends Component {
     componentDidMount() {
@@ -20,7 +19,7 @@ export default class Game extends Component {
             },
             currentWord: null,
             lettersCollected: [],
-            wordsCompleted: [],
+            wordsCompleted: ["booleanicing", "hell yeah", "word", "fuckingcompleted"],
             pickedWords: []
         })
 
@@ -178,8 +177,7 @@ export default class Game extends Component {
                                    className="board" />
                             <CurrentWord currentWord={this.state.currentWord}/>
                         </div>
-                        <CompletedWords words={this.state.wordsCompleted}/>
-                        <Score wordsCompleted={this.state.wordsCompleted}/>
+                        <CompletedWords words={this.state.wordsCompleted} />
                     </div>
                 </div>
             )

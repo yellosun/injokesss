@@ -1,3 +1,18 @@
+.nav {
+    height: 80px;
+}
+
+.nav-secondary {
+    height: 10px;
+    background-color: #00695f;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.4);
+}
+
+.nav-primary {
+    height: 30px;
+    background-color: #009688;
+}
+
 .board {
     margin: 0px 30px;
     selected: none;
@@ -7,6 +22,12 @@
 .row {
     height: 30px;
     display: flex;
+}
+
+.column {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 .tile {
@@ -19,7 +40,20 @@
     height: 100%;
 }
 
+.score {
+    padding: 7px 15px;
+    /* background-color: #ff784e; */
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 10%;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.2);
+}
+
+.current-card {
+    width: 300px !important;
+}
 .current-word {
+    margin-top: 5%;
     text-align: center;
 }
 
@@ -27,6 +61,30 @@
     font-family: "papyrus";
 }
 
+.current-header {
+    color: rgba(0,0,0,.2);
+    padding-top: 15px;
+    margin-bottom: -10px;
+}
+
+.card-header {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.card-title {
+    padding-right: 20px;
+    color: rgba(0,0,0,.2);
+    font-size: 30px;
+}
+
 :focus {
     outline-color: rgba(255, 255, 255, 0);
+}
+
+.completed-card {
+    min-width: 275px;
+    height: 650px;
+    padding: 20px 40px;
 }

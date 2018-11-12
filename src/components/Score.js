@@ -4,7 +4,7 @@ import { injokes } from '../data/injokes';
 export default class Score extends Component {
   render() {
     return (
-      <h1>{this.calculateScore()}</h1>
+      <div className="score">{this.calculateScore()}</div>
     )
   }
 
