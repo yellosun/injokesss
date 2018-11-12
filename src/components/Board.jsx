@@ -7,7 +7,12 @@ export default class Board extends Component {
     const height = 20
     const rows = []
     for (var y = 0; y < height; y++) {
-      rows.push(<Row y={y} key={y} snakePos={this.props.snakePos} snakeFacing={this.props.snakeFacing} currentWord={this.props.currentWord}/>)
+      rows.push(<Row y={y}
+                     key={y}
+                     snakeHistory={this.props.snakeHistory} 
+                     snakeFacing={this.props.snakeFacing} 
+                     currentWord={this.props.currentWord}
+                     lettersCollected={this.props.lettersCollected} />)
     }
     return (
       <div className="board">

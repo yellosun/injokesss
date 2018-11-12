@@ -14,6 +14,10 @@ export default class Tile extends Component {
       }
     }
 
+    if (this.props.letterInTail !== null) {
+      letterInTile = this.props.letterInTail
+    }
+
     if (this.props.snake) {
       if (this.props.snakeFacing.x === 0 && this.props.snakeFacing.y === 1)
         image = "snakeDown.png"

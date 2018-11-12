@@ -48,35 +48,37 @@ export default class Game extends Component {
                 "nickcringeface"
             ],
             currentWord: null,
-            lettersCollected: [""],
+            lettersCollected: [],
         })
 
         setInterval(this.runGameLoop, 300)
     }
 
     runGameLoop = () => {
-        const { currentWord, lettersCollected } = this.state
+        const { currentWord } = this.state
+        
         this.updateSnakePosition()
         if (currentWord === null) {
             this.glitterMyBoard()
         }
 
         const letterNomd = this.onTopOfLetter()
-
         if (letterNomd !== undefined) {
             this.nomLetter(currentWord, letterNomd)
-            this.setState({ lettersCollected: [...lettersCollected, letterNomd] })
         }
     }
 
-    nomLetter = (currentWord, letterNom) => {
-        const newLetter = {...letterNom}
+    nomLetter = (currentWord, letterNomd) => {
+        const newLetter = {...letterNomd}
         newLetter.eaten = true
 
         const newCurrentWord = {...currentWord}
         newCurrentWord.letters = [...newCurrentWord.letters]
-        newCurrentWord.letters[newCurrentWord.letters.indexOf(letterNom)] = {...newLetter}
-        this.setState({currentWord: newCurrentWord}, () => console.log(this.state.currentWord))
+        newCurrentWord.letters[newCurrentWord.letters.indexOf(letterNomd)] = {...newLetter}
+        this.setState({
+            currentWord: newCurrentWord,
+            lettersCollected: [...this.state.lettersCollected, letterNomd.letter]
+        })
     }
 
     onTopOfLetter = () => {
@@ -128,12 +130,12 @@ export default class Game extends Component {
             newPos.y = 0
         if (newPos.y < 0)
             newPos.y = 19
-        snakeState.history.push(newPos)
+        snakeState.history.unshift(newPos)
         this.setState({snake: snakeState})
     }
 
     getSnakePosition = () => {
-        return this.state.snake.history[this.state.snake.history.length - 1]
+        return this.state.snake.history[0]
     }
 
     onKeyDown = (event) => {
@@ -164,10 +166,11 @@ export default class Game extends Component {
                     <Nav />
                     <div className = 'row'>
                         <div className = 'column'>
-                            <Board snakePos={this.getSnakePosition()}
+                            <Board snakeHistory={this.state.snake.history}
                                    snakeFacing={this.state.snake.facing}
-                                   currentWord={this.state.currentWord} />
-                               <CurrentWord currentWord={this.state.currentWord}/>
+                                   currentWord={this.state.currentWord}
+                                   lettersCollected={this.state.lettersCollected} />
+                            <CurrentWord currentWord={this.state.currentWord}/>
                         </div>
                         <CompletedWords />
                     </div>
