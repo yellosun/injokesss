@@ -23,8 +23,8 @@
     text-align: center;
 }
 
-.completed-list {
-    list-style: none;
+.current-word.papyrus {
+    font-family: "papyrus";
 }
 
 :focus {

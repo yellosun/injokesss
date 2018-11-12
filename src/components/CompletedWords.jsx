@@ -21,7 +21,7 @@ export default class CompletedWords extends Component {
         return (
             <Card style={styles.card}>
                 <div style={styles.title}>Completed</div>
-                <div className="completed-list" style={styles.completed}>{this.props.words.map(word => <div>{word}<br/></div>)}</div>
+                <div className="completed-list" style={styles.completed}>{this.props.words.map(word => <div key={word}>{word}<br/></div>)}</div>
             </Card>
         )
     }
