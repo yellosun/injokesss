@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Card from '@material-ui/core/Card'
 import Score from '../components/Score'
-import Badge from '@material-ui/core/Badge'
 
 const styles = {
     completed: {
