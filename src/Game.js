@@ -20,9 +20,10 @@ export default class Game extends Component {
             injokes: injokes,
             currentWord: null,
             lettersCollected: [],
+            wordsCompleted: []
         })
 
-        setInterval(this.runGameLoop, 300)
+        setInterval(this.runGameLoop, 100)
     }
 
     runGameLoop = () => {
@@ -36,7 +37,18 @@ export default class Game extends Component {
         const letterNomd = this.onTopOfLetter()
         if (letterNomd !== undefined) {
             this.nomLetter(currentWord, letterNomd)
+            if (this.currentWordIsComplete()) {
+                this.finishWord()
+            }
         }
+    }
+
+    currentWordIsComplete = () => {
+        return this.state.lettersCollected.length === this.state.currentWord.word.length
+    }
+
+    finishWord = () => {
+        this.setState({wordsCompleted: [...this.state.wordsCompleted, this.state.lettersCollected.join("")]})
     }
 
     nomLetter = (currentWord, letterNomd) => {
@@ -143,7 +155,7 @@ export default class Game extends Component {
                                    lettersCollected={this.state.lettersCollected} />
                             <CurrentWord currentWord={this.state.currentWord}/>
                         </div>
-                        <CompletedWords />
+                        <CompletedWords words={this.state.wordsCompleted}/>
                     </div>
                 </div>
             )
