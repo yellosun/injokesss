@@ -17,10 +17,10 @@ export default class Game extends Component {
                     {x: 4, y: 16},
                 ]
             },
-            injokes: injokes,
             currentWord: null,
             lettersCollected: [],
-            wordsCompleted: []
+            wordsCompleted: [],
+            pickedWords: []
         })
 
         setInterval(this.runGameLoop, 100)
@@ -48,7 +48,39 @@ export default class Game extends Component {
     }
 
     finishWord = () => {
-        this.setState({wordsCompleted: [...this.state.wordsCompleted, this.state.lettersCollected.join("")]})
+        const newWord = this.pickRandomWord()
+        const newCurrentWord = this.makeCurrentWordObject(newWord)
+        this.setState({
+            wordsCompleted: [...this.state.wordsCompleted, this.state.lettersCollected.join("")],
+            currentWord: newCurrentWord,
+            lettersCollected: []
+        })
+    }
+
+    makeCurrentWordObject = (word) => {
+        const currentWord = {word: word, letters: []}
+        const takenPositions = {}
+        for (const letter of word.split("")) {
+            const position = this.getRandomLetterPosition(takenPositions)
+            takenPositions[JSON.stringify(position)] = true
+            currentWord.letters.push({
+                letter: letter,
+                position: position,
+                eaten: false
+            })
+        }
+        return currentWord
+    }
+
+    pickRandomWord = () => {
+        const validWords = injokes.filter(word => !this.state.pickedWords.includes(word))
+        if (validWords.length > 0) {
+            const word = validWords[Math.floor(Math.random() * validWords.length)]
+            this.setState({pickedWords: [...this.state.pickedWords, word]})
+            return word
+        } else {
+            console.error("idk deal with this later")
+        }
     }
 
     nomLetter = (currentWord, letterNomd) => {
@@ -75,19 +107,8 @@ export default class Game extends Component {
     }
 
     glitterMyBoard = () => {
-        const takenPositions = {}
-        const word = this.state.injokes[Math.floor(Math.random() * this.state.injokes.length)]
-        const newCurrentWord = {word: word, letters: []}
-        for (const letter of word.split("")) {
-            const position = this.getRandomLetterPosition(takenPositions)
-            takenPositions[JSON.stringify(position)] = true
-            newCurrentWord.letters.push({
-                letter: letter,
-                position: position,
-                eaten: false
-            })
-        }
-        this.setState({currentWord: newCurrentWord})
+        const word = this.pickRandomWord()
+        this.setState({currentWord: this.makeCurrentWordObject(word)})
     }
 
     getRandomLetterPosition = (takenPositions) => {
