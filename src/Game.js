@@ -136,7 +136,7 @@ export default class Game extends Component {
                             <Board snakePos={this.getSnakePosition()}
                                    snakeFacing={this.state.snake.facing}
                                    currentWord={this.state.currentWord} />
-                            <CurrentWord />
+                               <CurrentWord currentWord={this.state.currentWord}/>
                         </div>
                         <CompletedWords />
                     </div>
