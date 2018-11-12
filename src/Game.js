@@ -61,11 +61,11 @@ export default class Game extends Component {
             this.glitterMyBoard()
         }
 
-        const letterNomd = this.onTopOfLetters()
-        this.setState({ lettersCollected: [...lettersCollected, letterNomd] })
+        const letterNomd = this.onTopOfLetter()
 
         if (letterNomd !== undefined) {
             this.nomLetter(currentWord, letterNomd)
+            this.setState({ lettersCollected: [...lettersCollected, letterNomd] })
         }
     }
 
@@ -79,10 +79,12 @@ export default class Game extends Component {
         this.setState({currentWord: newCurrentWord}, () => console.log(this.state.currentWord))
     }
 
-    onTopOfLetters = () => {
+    onTopOfLetter = () => {
         return (
-            this.state.currentWord.letters.find(letter=> {
-                return letter.position.x ===  this.getSnakePosition().x && letter.position.y === this.getSnakePosition().y
+            this.state.currentWord.letters.find(letter => {
+                return letter.position.x === this.getSnakePosition().x &&
+                       letter.position.y === this.getSnakePosition().y &&
+                       !letter.eaten
             })
         )
     }
