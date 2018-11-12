@@ -7,7 +7,7 @@ export default class Tile extends Component {
     let letterInTile = null
     if (this.props.currentWord !== null) {
       for (const letter of this.props.currentWord.letters) {
-        if (letter.position.x === this.props.x && letter.position.y === this.props.y) {
+        if (letter.position.x === this.props.x && letter.position.y === this.props.y && !letter.eaten) {
           letterInTile = letter.letter
           break
         }
