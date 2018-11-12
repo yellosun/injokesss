@@ -28,7 +28,7 @@ export default class Game extends Component {
 
     runGameLoop = () => {
         const { currentWord } = this.state
-        
+
         this.updateSnakePosition()
         if (currentWord === null) {
             this.glitterMyBoard()
@@ -173,7 +173,8 @@ export default class Game extends Component {
                             <Board snakeHistory={this.state.snake.history}
                                    snakeFacing={this.state.snake.facing}
                                    currentWord={this.state.currentWord}
-                                   lettersCollected={this.state.lettersCollected} />
+                                   lettersCollected={this.state.lettersCollected}
+                                   className="board" />
                             <CurrentWord currentWord={this.state.currentWord}/>
                         </div>
                         <CompletedWords words={this.state.wordsCompleted}/>

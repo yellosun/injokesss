@@ -1,5 +1,7 @@
 .board {
     margin: 0px 30px;
+    selected: none;
+    outline: none;
 }
 
 .row {
@@ -19,4 +21,12 @@
 
 .current-word {
     text-align: center;
+}
+
+.completed-list {
+    list-style: none;
+}
+
+:focus {
+    outline-color: rgba(255, 255, 255, 0);
 }
