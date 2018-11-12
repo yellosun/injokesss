@@ -126,8 +126,7 @@ export default class Game extends Component {
     }
 
     render() {
-        if (this.state && this.state.snake) {
-            console.log(this.state.currentWord)
+        if (this.state && this.state.snake && this.state.currentWord) {
             return (
                 <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
                     <Nav />
