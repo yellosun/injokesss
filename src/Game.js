@@ -14,15 +14,22 @@ export default class Game extends Component {
         // const url = "http://localhost:3000"
         const url = "http://10.185.1.204:3000/"
         const socket = require('socket.io-client')(url);
-        socket.on('initialLoadData', this.setStateFromSocket);
+        socket.on('initialLoadData', this.setInitialState);
         socket.on('gameUpdate', this.setStateFromSocket);
         this.socket = socket
     }
 
+    setInitialState = (data) => {
+        console.log("got initial data")
+        this.setState({socketId: data.socketId,
+                       players: data.state,
+                       thisPlayer: data.state.find(player => player.socketId === data.socketId)})
+    }
+
     setStateFromSocket = (data) => {
         console.log("got some data")
-        console.log({players: data.state, thisPlayer: data.state.find(player => player.socketId === data.socketId)})
-        this.setState({players: data.state, thisPlayer: data.state.find(player => player.socketId === data.socketId)})
+        console.log({players: data.state, thisPlayer: data.state.find(player => player.socketId === this.state.socketId)})
+        this.setState({players: data.state, thisPlayer: data.state.find(player => player.socketId === this.state.socketId)})
     }
 
     onKeyDown = (event) => {

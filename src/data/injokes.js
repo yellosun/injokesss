@@ -27,5 +27,5 @@ export const injokes = [
   "orangeroughness",
   "holistichelp",
   "isthatpapyrus",
-  "nickcringeface"
+  "perfectcode"
 ]
