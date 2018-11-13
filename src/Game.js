@@ -27,7 +27,8 @@ export default class Game extends Component {
 
     setStateFromSocket = (data) => {
         console.log("got some data")
-        this.setState({players: data})
+        console.log({players: data.state, thisPlayer: data.state.find(player => player.socketId === data.socketId)})
+        this.setState({players: data.state, thisPlayer: data.state.find(player => player.socketId === data.socketId)})
     }
 
     onKeyDown = (event) => {
@@ -54,20 +55,10 @@ export default class Game extends Component {
                 <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
                     <Nav />
                     <div className = 'row'>
-                        <Board snakeHistory={this.state.snake.history}
-                               snakeFacing={this.state.snake.facing}
-                               currentWord={this.state.currentWord}
-                               lettersCollected={this.state.lettersCollected}
-                               className="board" />
+                        <Board players={this.state.players} />
                         <div className = 'column'>
-                            <Board players={this.state.players} />
-                            {/* <Board snakeHistory={this.state.snake.history}
-                                   snakeFacing={this.state.snake.facing}
-                                   currentWord={this.state.currentWord}
-                                   lettersCollected={this.state.lettersCollected}
-                                   className="board" /> */}
-                            {/* <CurrentWord currentWord={this.state.currentWord} lettersCollected={this.state.lettersCollected} /> */}
-                            {/* <CompletedWords words={this.state.wordsCompleted} /> */}
+                            <CurrentWord currentWord={this.state.thisPlayer.currentWord} lettersCollected={this.state.thisPlayer.lettersCollected} />
+                            <CompletedWords words={this.state.thisPlayer.wordsCompleted} />
                         </div>
                         <button onClick={() => this.socket.emit("pause")}>Pause</button>
                         <button onClick={() => this.socket.emit("resume")}>Resume</button>

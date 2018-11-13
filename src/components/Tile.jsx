@@ -12,7 +12,6 @@ export default class Tile extends Component {
     }
 
     let snakeInTile = null
-    console.log(this.props)
     for (const snake of this.props.snakes) {
       if (snake.position.x === this.props.x &&
           snake.position.y === this.props.y) {
