@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
 import { injokes } from '../data/injokes'
 
+const styles = {
+    yes: {
+        animation: 'blinker 500ms linear infinite',
+    }
+}
+
 export default class Score extends Component {
+
   render() {
     return (
-      <div className="score">{this.calculateScore()}</div>
+      <div className="score" style={this.flashStyle()}>{ this.calculateScore() }</div>
     )
+  }
+
+  flashStyle = () => {
+       if (this.calculateScore() > 0) {
+            return styles.yes
+      }
   }
 
   calculateScore = () => {

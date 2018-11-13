@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import './Game.css'
 import Board from './components/Board'
 import Nav from './components/Nav'
 import CurrentWord from './components/CurrentWord'
@@ -56,15 +56,15 @@ export default class Game extends Component {
                 <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
                     <Nav />
                     <div className = 'row'>
+                        <Board snakeHistory={this.state.snake.history}
+                               snakeFacing={this.state.snake.facing}
+                               currentWord={this.state.currentWord}
+                               lettersCollected={this.state.lettersCollected}
+                               className="board" />
                         <div className = 'column'>
-                            <Board snakeHistory={this.state.snake.history}
-                                   snakeFacing={this.state.snake.facing}
-                                   currentWord={this.state.currentWord}
-                                   lettersCollected={this.state.lettersCollected}
-                                   className="board" />
-                               <CurrentWord currentWord={this.state.currentWord} lettersCollected={this.state.lettersCollected} />
+                            <CurrentWord currentWord={this.state.currentWord} lettersCollected={this.state.lettersCollected} />
+                            <CompletedWords words={this.state.wordsCompleted} />
                         </div>
-                        <CompletedWords words={this.state.wordsCompleted} />
                     </div>
                 </div>
             )
