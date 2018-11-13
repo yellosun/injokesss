@@ -31,9 +31,12 @@ export default class Tile extends Component {
         image = "snakeLeft.png"
     }
     return (
-      <div className="tile">
-        {letterInTile !== null ? letterInTile : <img src={require(`../images/${image}`)} alt="some thing"/>}
-      </div>
+        <div>
+        {letterInTile !== null
+            ? <div className="lettered-tile">{letterInTile}</div>
+            : <div className="tile"><img src={require(`../images/${image}`)} alt="some thing"/></div>
+        }
+        </div>
     );
   }
 }

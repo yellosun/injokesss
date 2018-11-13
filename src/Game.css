@@ -30,10 +30,16 @@
     align-items: center;
 }
 
-.tile {
+.tile, .lettered-tile {
     width: 30px;
     height: 100%;
-    border: 1px grey solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lettered-tile {
+    background-image: url("./images/woodTileLight.png");
 }
 
 .tile img {
@@ -56,7 +62,6 @@
         background-color: none;
     } */
     50% {
-        /* opacity: 0; */
         background-color: limegreen;
     }
     /* 75% {
