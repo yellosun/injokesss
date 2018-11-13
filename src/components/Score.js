@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { injokes } from '../data/injokes';
+import { injokes } from '../data/injokes'
 
 export default class Score extends Component {
   render() {

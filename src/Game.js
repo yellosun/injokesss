@@ -11,8 +11,8 @@ export default class Game extends Component {
     }
 
     setupSocket = () => {
-        // const url = "http://localhost:3000"
-        const url = "http://10.185.7.46:3000/"
+        const url = "http://localhost:3000"
+        // const url = "http://10.185.6.229:3000/"
         const socket = require('socket.io-client')(url);
         // socket.on('resourceGained', ({resourceType, amount, origin, totalResources}) => {
         // this.props.addResources(resourceType, amount, origin, new Date().getTime(), totalResources)
@@ -27,7 +27,6 @@ export default class Game extends Component {
 
     setStateFromSocket = (data) => {
         this.setState(data)
-        console.log(data)
     }
 
     onKeyDown = (event) => {
@@ -63,7 +62,7 @@ export default class Game extends Component {
                                    currentWord={this.state.currentWord}
                                    lettersCollected={this.state.lettersCollected}
                                    className="board" />
-                            <CurrentWord currentWord={this.state.currentWord}/>
+                               <CurrentWord currentWord={this.state.currentWord} lettersCollected={this.state.lettersCollected} />
                         </div>
                         <CompletedWords words={this.state.wordsCompleted} />
                     </div>
