@@ -30,13 +30,15 @@ export default class Tile extends Component {
       else if (snakeInTile.facing.x === -1 && snakeInTile.facing.y === 0)
         image = "snakeLeft.png"
     }
-    return (
-        <div>
-        {letterInTile !== null
-            ? <div className="lettered-tile">{letterInTile}</div>
-            : <div className="tile"><img src={require(`../images/${image}`)} alt="some thing"/></div>
+
+    if  (letterInTile !== null) {
+        if (this.props.letterInTail) {
+            return <div className="collected-tile">{letterInTile}</div>
+        } else {
+            return <div className="lettered-tile">{letterInTile}</div>
         }
-        </div>
-    );
+    } else {
+        return <div className="tile"><img src={require(`../images/${image}`)} alt="some thing"/></div>
+    }
   }
 }

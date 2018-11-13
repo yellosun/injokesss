@@ -9,11 +9,13 @@ export default class Row extends Component {
     for (var x = 0; x < width; x++) {
       let letterInTail = null
       let letterOnBoard = null
+      let color = null
       for (const player of this.props.players) {
         for (let i = 0; i < player.lettersCollected.length; i++) {
           if (player.snake.history[i + 1].x === x &&
               player.snake.history[i + 1].y === this.props.y) {
             letterInTail = player.lettersCollected[i]
+            color = player.color            
             break
           }
         }
@@ -35,6 +37,7 @@ export default class Row extends Component {
                     })}
                     letterOnBoard={letterOnBoard}
                     letterInTail={letterInTail}
+                    color={color}
                   />)
     }
     return (

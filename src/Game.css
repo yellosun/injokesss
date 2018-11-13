@@ -30,15 +30,24 @@
     align-items: center;
 }
 
-.tile, .lettered-tile {
+.tile, .lettered-tile, .collected-tile {
     width: 30px;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
 }
 
 .lettered-tile {
+    background-image: url("./images/woodTileLight.png");
+}
+
+.collected-tile {
+    background-color: limegreen;
     background-image: url("./images/woodTileLight.png");
 }
 
