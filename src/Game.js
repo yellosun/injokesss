@@ -12,7 +12,7 @@ export default class Game extends Component {
 
     setupSocket = () => {
         const url = "http://localhost:3000"
-        // const url = "http://10.185.6.229:3000/"
+        // const url = "http://10.0.0.79:3000/"
         const socket = require('socket.io-client')(url);
         // socket.on('resourceGained', ({resourceType, amount, origin, totalResources}) => {
         // this.props.addResources(resourceType, amount, origin, new Date().getTime(), totalResources)
@@ -26,11 +26,11 @@ export default class Game extends Component {
     }
 
     setStateFromSocket = (data) => {
-        this.setState(data)
+        console.log("got some data")
+        this.setState({players: data})
     }
 
     onKeyDown = (event) => {
-        const snakeState = {...this.state.snake}
         switch (event.key) {
             case "ArrowUp":
                 this.socket.emit("changeFacing", {x: 0, y: -1})
@@ -45,26 +45,27 @@ export default class Game extends Component {
                 this.socket.emit("changeFacing", {x: 1, y: 0})
                 break;
             default:
-
         }
-        this.setState({snake: snakeState})
     }
 
     render() {
-        if (this.state && this.state.snake && this.state.currentWord) {
+        if (this.state && this.state.players && this.state.players.length > 0 && this.state.players[0].currentWord) {
             return (
                 <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
                     <Nav />
                     <div className = 'row'>
                         <div className = 'column'>
-                            <Board snakeHistory={this.state.snake.history}
+                            <Board players={this.state.players} />
+                            {/* <Board snakeHistory={this.state.snake.history}
                                    snakeFacing={this.state.snake.facing}
                                    currentWord={this.state.currentWord}
                                    lettersCollected={this.state.lettersCollected}
-                                   className="board" />
-                               <CurrentWord currentWord={this.state.currentWord} lettersCollected={this.state.lettersCollected} />
+                                   className="board" /> */}
+                            {/* <CurrentWord currentWord={this.state.currentWord} lettersCollected={this.state.lettersCollected} /> */}
                         </div>
-                        <CompletedWords words={this.state.wordsCompleted} />
+                        {/* <CompletedWords words={this.state.wordsCompleted} /> */}
+                        <button onClick={() => this.socket.emit("pause")}>Pause</button>
+                        <button onClick={() => this.socket.emit("resume")}>Resume</button>
                     </div>
                 </div>
             )

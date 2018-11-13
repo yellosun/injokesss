@@ -9,10 +9,8 @@ export default class Board extends Component {
     for (var y = 0; y < height; y++) {
       rows.push(<Row y={y}
                      key={y}
-                     snakeHistory={this.props.snakeHistory} 
-                     snakeFacing={this.props.snakeFacing} 
-                     currentWord={this.props.currentWord}
-                     lettersCollected={this.props.lettersCollected} />)
+                     players={this.props.players}
+                     />)
     }
     return (
       <div className="board">
@@ -21,3 +19,9 @@ export default class Board extends Component {
     );
   }
 }
+
+
+                     /* snakeHistory={this.props.snakeHistory} 
+                     snakeFacing={this.props.snakeFacing} 
+                     currentWord={this.props.currentWord}
+                     lettersCollected={this.props.lettersCollected} />) */
