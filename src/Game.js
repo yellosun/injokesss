@@ -11,15 +11,9 @@ export default class Game extends Component {
     }
 
     setupSocket = () => {
-        const url = "http://localhost:3000"
-        // const url = "http://10.0.0.79:3000/"
+        // const url = "http://localhost:3000"
+        const url = "http://10.185.1.204:3000/"
         const socket = require('socket.io-client')(url);
-        // socket.on('resourceGained', ({resourceType, amount, origin, totalResources}) => {
-        // this.props.addResources(resourceType, amount, origin, new Date().getTime(), totalResources)
-        // });
-        // socket.on('buildingBuilt', ({buildings, resources}) => {
-        // this.props.buildBuilding(buildings, resources)
-        // });
         socket.on('initialLoadData', this.setStateFromSocket);
         socket.on('gameUpdate', this.setStateFromSocket);
         this.socket = socket
