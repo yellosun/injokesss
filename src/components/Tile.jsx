@@ -5,27 +5,30 @@ export default class Tile extends Component {
     let image = "woodTile.jpg"
 
     let letterInTile = null
-    if (this.props.currentWord !== null) {
-      for (const letter of this.props.currentWord.letters) {
-        if (letter.position.x === this.props.x && letter.position.y === this.props.y && !letter.eaten) {
-          letterInTile = letter.letter
-          break
-        }
-      }
-    }
-
     if (this.props.letterInTail !== null) {
       letterInTile = this.props.letterInTail
+    } else if (this.props.letterOnBoard !== null) {
+      letterInTile = this.props.letterOnBoard
     }
 
-    if (this.props.snake) {
-      if (this.props.snakeFacing.x === 0 && this.props.snakeFacing.y === 1)
+    let snakeInTile = null
+    console.log(this.props)
+    for (const snake of this.props.snakes) {
+      if (snake.position.x === this.props.x &&
+          snake.position.y === this.props.y) {
+            snakeInTile = snake
+            break
+          }
+    }
+
+    if (snakeInTile !== null) {
+      if (snakeInTile.facing.x === 0 && snakeInTile.facing.y === 1)
         image = "snakeDown.png"
-      else if (this.props.snakeFacing.x === 0 && this.props.snakeFacing.y === -1)
+      else if (snakeInTile.facing.x === 0 && snakeInTile.facing.y === -1)
         image = "snakeUp.png"
-      else if (this.props.snakeFacing.x === 1 && this.props.snakeFacing.y === 0)
+      else if (snakeInTile.facing.x === 1 && snakeInTile.facing.y === 0)
         image = "snakeRight.png"
-      else if (this.props.snakeFacing.x === -1 && this.props.snakeFacing.y === 0)
+      else if (snakeInTile.facing.x === -1 && snakeInTile.facing.y === 0)
         image = "snakeLeft.png"
     }
     return (

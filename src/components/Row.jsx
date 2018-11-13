@@ -8,22 +8,32 @@ export default class Row extends Component {
     const tiles = []
     for (var x = 0; x < width; x++) {
       let letterInTail = null
-      for (let i = 0; i < this.props.lettersCollected.length; i++) {
-        if (this.props.snakeHistory[i + 1].x === x &&
-            this.props.snakeHistory[i + 1].y === this.props.y) {
-          letterInTail = this.props.lettersCollected[i]
-          break
+      let letterOnBoard = null
+      for (const player of this.props.players) {
+        for (let i = 0; i < player.lettersCollected.length; i++) {
+          if (player.snake.history[i + 1].x === x &&
+              player.snake.history[i + 1].y === this.props.y) {
+            letterInTail = player.lettersCollected[i]
+            break
+          }
         }
+
+        if (player.currentWord)
+          for (const letter of player.currentWord.letters) {
+            if (letter.position.x === x && letter.position.y === this.props.y && !letter.eaten)
+              letterOnBoard = letter.letter
+          }
       }
 
-      const snakePos = this.props.snakeHistory[0]
+
       tiles.push(<Tile
                     x={x}
                     y={this.props.y}
                     key={x}
-                    snake={snakePos.x === x && snakePos.y === this.props.y}
-                    snakeFacing={this.props.snakeFacing}
-                    currentWord={this.props.currentWord}
+                    snakes={this.props.players.map(player => {
+                      return {position: player.snake.history[0], facing: player.snake.facing}
+                    })}
+                    letterOnBoard={letterOnBoard}
                     letterInTail={letterInTail}
                   />)
     }
