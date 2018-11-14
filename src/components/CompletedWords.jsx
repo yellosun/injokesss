@@ -22,7 +22,7 @@ export default class CompletedWords extends Component {
             <Card className="completed-card">
                 <div className='card-header'>
                     <div className="card-title">Completed</div>
-                    <Score wordsCompleted={this.props.words}/>
+                    <Score score={this.props.score}/>
                 </div>
 
                 <div>

@@ -17,7 +17,7 @@ export default class Score extends Component {
   render() {
     return (
         <div>
-          <Button variant="fab" className="score" style={this.flashStyle()}>{ this.calculateScore() }</Button>
+          <Button variant="fab" className="score" style={this.flashStyle()}>{ this.props.score }</Button>
         </div>
     )
   }
@@ -27,19 +27,10 @@ export default class Score extends Component {
   }
 
   componentDidUpdate(prevProps) {
-        if (prevProps.wordsCompleted.length < this.props.wordsCompleted.length) {
-            let word = this.props.wordsCompleted[this.props.wordsCompleted.length - 1]
-            if (injokes.includes(word)) {
-                this.setState({green: true})
-                setTimeout(()=> this.setState({green: false}), 3000)
-                return new Audio(require("../media/mlg-airhorn.mp3")).play()
-            }
+        if (prevProps.score < this.props.score) {
+            this.setState({green: true})
+            setTimeout(()=> this.setState({green: false}), 3000)
+            return new Audio(require("../media/mlg-airhorn.mp3")).play()
         }
-  }
-
-  calculateScore = () => {
-    let score = 0
-    this.props.wordsCompleted.forEach(word => {if (injokes.includes(word)) score += word.length})
-    return score
   }
 }
