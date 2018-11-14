@@ -20,7 +20,7 @@ export default class Game extends Component {
     }
 
     playSong = () => {
-        new Audio(require("./media/frenchsong.mp3")).play()
+        const myAudio = new Audio(require("./media/frenchsong.mp3")).play()
     }
 
     setupSocket = () => {
