@@ -82,6 +82,10 @@ export default class Game extends Component {
     }
 
     render() {
+        const styles = {
+            animation: 'tinker 3s ease-in-out infinite',
+        }
+
         if (this.state && this.state.players) {
             return (
                 <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
@@ -103,7 +107,7 @@ export default class Game extends Component {
                                                 currentMessage={this.state.currentMessage}
                                                 sendMessage={this.sendMessage}
                                                 updateCurrentMessage={this.updateCurrentMessage} />
-                                  <Button variant="contained" className="join-btn" onClick={this.handleJoin}>Be One With The Snake</Button></div>
+                                            <Button variant="contained" className="join-btn" style={styles} onClick={this.handleJoin}>Be One With The Snake</Button></div>
                             }
                         </div>
 
