@@ -6,11 +6,19 @@ html {
     width: 30px !important;
     height: 25px !important;
     margin-left: 10px !important;
-
+    background-color: white !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-.MuiCard-root-39 {
+.chatbox {
     overflow: auto !important;
+    margin-bottom: 20px;
+}
+
+.row .message {
+    align-items: center;
+    padding: 10px;
 }
 
 .message-box {

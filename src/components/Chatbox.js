@@ -12,7 +12,7 @@ export default class Chatbox extends React.Component {
                 <div className='message-box'>
                     {messages.map(m=> <p>{m}</p>)}
                 </div>
-                <div className='row' onKeyDown={this.keyPressed}>
+                <div className='row message' onKeyDown={this.keyPressed}>
                     <input type='text' onChange={this.props.updateCurrentMessage} placeholder="hi idk snakes" value={this.props.currentMessage}/>
                     <Button variant="fab" className='chatbox-submit-btn' onClick={this.props.sendMessage}><SendIcon/></Button>
                 </div>
@@ -21,7 +21,7 @@ export default class Chatbox extends React.Component {
     }
 
     keyPressed = (event) => {
-        if (event.key == "Enter")
+        if (event.key === "Enter")
             this.props.sendMessage()
     }
 }

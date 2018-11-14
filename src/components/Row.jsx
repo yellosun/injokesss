@@ -6,6 +6,7 @@ export default class Row extends PureComponent {
     const width = 20
     const tiles = []
     for (var x = 0; x < width; x++) {
+        // eslint-disable-next-line
       const entity = this.props.entities.find(entity => entity.position.x === x && entity.position.y === this.props.y)
       tiles.push(<Tile
                     x={x}

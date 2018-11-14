@@ -39,10 +39,8 @@ export default class Board extends Component {
     const height = 20
     const rows = []
     for (var y = 0; y < height; y++) {
-      rows.push(<Row y={y}
-                     key={y}
-                     entities={entitiesInTiles.filter(entity => entity.position.y === y)}
-                     />)
+        // eslint-disable-next-line
+      rows.push(<Row y={y} key={y} entities={entitiesInTiles.filter(entity => entity.position.y === y)}/>)
     }
     return (
       <div className="board">
