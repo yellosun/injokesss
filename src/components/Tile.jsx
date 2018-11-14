@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 
-export default class Tile extends Component {
+export default class Tile extends PureComponent {
   render() {
     let image = "woodTile.jpg"
     
