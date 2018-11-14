@@ -102,7 +102,7 @@ export default class Game extends Component {
                             <Timer timer={this.state.timer}/>
                             {this.state.thisPlayer !== undefined
                                 ? <div><CurrentWord currentWord={this.state.thisPlayer.currentWord} lettersCollected={this.state.thisPlayer.lettersCollected} />
-                                  <CompletedWords words={this.state.thisPlayer.wordsCompleted} /></div>
+                                  <CompletedWords words={this.state.thisPlayer.wordsCompleted} score={this.state.thisPlayer.score} /></div>
                                 : <div><Chatbox messages={this.state.messages}
                                                 currentMessage={this.state.currentMessage}
                                                 sendMessage={this.sendMessage}
