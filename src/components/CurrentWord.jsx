@@ -6,7 +6,7 @@ export default class CurrentWord extends Component {
     const {lettersCollected, currentWord} = this.props
 
     return (
-        <div className={this.props.currentWord !== null && this.props.currentWord.word === "isthatpapyrus"
+        <div className={this.props.currentWord !== null && this.props.currentWord.word.includes("papyrus")
                             ? "current-word papyrus"
                             : "current-word"}>
           <Card className="current-card">
