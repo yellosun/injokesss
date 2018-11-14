@@ -2,6 +2,19 @@ html {
     overflow: hidden;
 }
 
+input {
+    border: none;
+    border-bottom: solid black;
+    width: 225px;
+    font-size: 12px;
+    padding: 5px;
+}
+
+p {
+    margin-block-end: 1px;
+    margin-block-start: 4px;
+}
+
 .chatbox-submit-btn {
     width: 30px !important;
     height: 25px !important;
@@ -13,17 +26,18 @@ html {
 
 .chatbox {
     overflow: auto !important;
-    margin-bottom: 20px;
+    margin: 20px 0px;
 }
 
 .row .message {
     align-items: center;
-    padding: 10px;
+    padding: 20px 0px 30px 30px;
 }
 
 .message-box {
-    overflow: auto;
-    height: 300px;
+    overflow: scroll;
+    height: 250px;
+    padding: 30px 40px;
 }
 
 /*********/
