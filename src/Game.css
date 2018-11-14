@@ -13,6 +13,10 @@
     background-color: #009688;
 }
 
+.horn {
+    display: none;
+}
+
 .board {
     margin: 0px 30px;
     selected: none;

@@ -11,7 +11,9 @@ export default class Score extends Component {
 
   render() {
     return (
-      <div className="score" style={this.flashStyle()}>{ this.calculateScore() }</div>
+        <div>
+          <div className="score" style={this.flashStyle()}>{ this.calculateScore() }</div>
+        </div>
     )
   }
 
@@ -19,6 +21,15 @@ export default class Score extends Component {
        if (this.calculateScore() > 0) {
             return styles.yes
       }
+  }
+
+  componentDidUpdate(prevProps) {
+        if (prevProps.wordsCompleted.length < this.props.wordsCompleted.length) {
+            let word = this.props.wordsCompleted[this.props.wordsCompleted.length - 1]
+            if (injokes.includes(word)) {
+                return new Audio(require("../images/mlg-airhorn.mp3")).play()
+            }
+        }
   }
 
   calculateScore = () => {
