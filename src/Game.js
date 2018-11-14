@@ -56,6 +56,7 @@ export default class Game extends Component {
     }
 
     onKeyDown = (event) => {
+        new Audio(require("./media/frenchsong.mp3")).play()
         switch (event.key) {
             case "ArrowUp":
                 this.socket.emit("changeFacing", {x: 0, y: -1})
@@ -74,7 +75,7 @@ export default class Game extends Component {
     }
 
     handleButton = () => {
-        new Audio(require("./images/mlg-airhorn.mp3")).play()
+        new Audio(require("./media/mlg-airhorn.mp3")).play()
     }
 
     handleJoin = () => {
@@ -94,7 +95,7 @@ export default class Game extends Component {
                         <div className = 'column'>
                             <Board players={this.state.players} />
                             <div className="row buttons">
-                                <Button variant="fab" className="play-btn" onClick={() => this.socket.emit("resume")}><PlayArrowIcon /></Button>
+                                <Button variant="fab" className="play-btn" onClick={() => this.socket.emit("resume")} ><PlayArrowIcon /></Button>
                                 <Button variant="fab" className="pause-btn" onClick={() => this.socket.emit("pause")}><PauseIcon /></Button>
                             </div>
                         </div>
