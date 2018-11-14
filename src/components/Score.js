@@ -30,7 +30,7 @@ export default class Score extends Component {
         if (prevProps.score < this.props.score) {
             this.setState({green: true})
             setTimeout(()=> this.setState({green: false}), 3000)
-            return new Audio(require("../images/mlg-airhorn.mp3")).play()
+            return new Audio(require("../media/mlg-airhorn.mp3")).play()
         }
   }
 }

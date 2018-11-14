@@ -16,6 +16,11 @@ export default class Game extends Component {
     componentDidMount() {
         this.setupSocket()
         this.setState({ messages: [] })
+        this.playSong()
+    }
+
+    playSong = () => {
+        new Audio(require("./media/frenchsong.mp3")).play()
     }
 
     setupSocket = () => {
@@ -74,7 +79,7 @@ export default class Game extends Component {
     }
 
     handleButton = () => {
-        new Audio(require("./images/mlg-airhorn.mp3")).play()
+        new Audio(require("./media/mlg-airhorn.mp3")).play()
     }
 
     handleJoin = () => {
@@ -94,7 +99,7 @@ export default class Game extends Component {
                         <div className = 'column'>
                             <Board players={this.state.players} />
                             <div className="row buttons">
-                                <Button variant="fab" className="play-btn" onClick={() => this.socket.emit("resume")}><PlayArrowIcon /></Button>
+                                <Button variant="fab" className="play-btn" onClick={() => this.socket.emit("resume")} ><PlayArrowIcon /></Button>
                                 <Button variant="fab" className="pause-btn" onClick={() => this.socket.emit("pause")}><PauseIcon /></Button>
                             </div>
                         </div>
