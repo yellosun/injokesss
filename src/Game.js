@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import './Game.css'
+
 import Board from './components/Board'
 import Nav from './components/Nav'
 import CurrentWord from './components/CurrentWord'
 import CompletedWords from './components/CompletedWords'
+import Chatbox from './components/Chatbox'
+
 import Button from '@material-ui/core/Button'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import PauseIcon from '@material-ui/icons/Pause'
@@ -11,6 +14,7 @@ import PauseIcon from '@material-ui/icons/Pause'
 export default class Game extends Component {
     componentDidMount() {
         this.setupSocket()
+        this.setState({ messages: ['wowcoolgame', 'needsbetterwords', 'niceplaying', 'snakesssssss', 'imvotingforaword'] })
     }
 
     setupSocket = () => {
@@ -75,7 +79,8 @@ export default class Game extends Component {
                             {this.state.thisPlayer !== undefined
                                 ? <div><CurrentWord currentWord={this.state.thisPlayer.currentWord} lettersCollected={this.state.thisPlayer.lettersCollected} />
                                   <CompletedWords words={this.state.thisPlayer.wordsCompleted} /></div>
-                                : <Button variant="contained" className="join-btn" onClick={this.handleJoin}>Be One With The Snake</Button>
+                                : <div><Chatbox messages={this.state.messages}/>
+                                  <Button variant="contained" className="join-btn" onClick={this.handleJoin}>Be One With The Snake</Button></div>
                             }
                         </div>
 
