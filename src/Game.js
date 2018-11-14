@@ -15,7 +15,7 @@ export default class Game extends Component {
 
     setupSocket = () => {
         // const url = "http://localhost:3000"
-        const url = "http://10.185.4.122:3000/"
+        const url = "http://10.185.4.165:3000/"
         const socket = require('socket.io-client')(url);
         socket.on('initialLoadData', this.setInitialState);
         socket.on('gameUpdate', this.setStateFromSocket);
@@ -54,8 +54,12 @@ export default class Game extends Component {
         new Audio(require("./images/mlg-airhorn.mp3")).play()
     }
 
+    handleJoin = () => {
+        this.socket.emit("joinGame")
+    }
+
     render() {
-        if (this.state && this.state.players && this.state.players.length > 0 && this.state.players[0].currentWord) {
+        if (this.state && this.state.players) {
             return (
                 <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
                     <Nav />
@@ -68,8 +72,11 @@ export default class Game extends Component {
                             </div>
                         </div>
                         <div className = 'column'>
-                            <CurrentWord currentWord={this.state.thisPlayer.currentWord} lettersCollected={this.state.thisPlayer.lettersCollected} />
-                            <CompletedWords words={this.state.thisPlayer.wordsCompleted} />
+                            {this.state.thisPlayer !== undefined
+                                ? <div><CurrentWord currentWord={this.state.thisPlayer.currentWord} lettersCollected={this.state.thisPlayer.lettersCollected} />
+                                  <CompletedWords words={this.state.thisPlayer.wordsCompleted} /></div>
+                                : <Button variant="contained" className="join-btn" onClick={this.handleJoin}>Be One With The Snake</Button>
+                            }
                         </div>
 
                     </div>
