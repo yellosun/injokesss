@@ -15,8 +15,7 @@ import PauseIcon from '@material-ui/icons/Pause'
 export default class Game extends Component {
     componentDidMount() {
         this.setupSocket()
-        this.setState({ messages: [] })
-        this.playSong()
+        this.setState({ messages: [] , audioPlaying: false})
     }
 
     playSong = () => {
@@ -61,6 +60,10 @@ export default class Game extends Component {
     }
 
     onKeyDown = (event) => {
+        if (!this.state.audioPlaying) {
+            this.playSong()
+            this.setState({audioPlaying: true})
+        }
         switch (event.key) {
             case "ArrowUp":
                 this.socket.emit("changeFacing", {x: 0, y: -1})
