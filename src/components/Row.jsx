@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import Tile from './Tile'
 
-export default class Row extends Component {
+export default class Row extends PureComponent {
   render() {
     const width = 20
     const tiles = []
