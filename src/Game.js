@@ -6,6 +6,7 @@ import Nav from './components/Nav'
 import CurrentWord from './components/CurrentWord'
 import CompletedWords from './components/CompletedWords'
 import Chatbox from './components/Chatbox'
+import Timer from './components/Timer'
 
 import Button from '@material-ui/core/Button'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow'
@@ -36,7 +37,7 @@ export default class Game extends Component {
     setStateFromSocket = (data) => {
         this.setState({players: data.state, thisPlayer: data.state.find(player => player.socketId === this.state.socketId)})
     }
-    
+
     receiveMessage = (message) => {
         this.setState({messages: [...this.state.messages, message]})
     }
@@ -91,6 +92,7 @@ export default class Game extends Component {
                             </div>
                         </div>
                         <div className = 'column'>
+                            <Timer timer={this.state.timer}/>
                             {this.state.thisPlayer !== undefined
                                 ? <div><CurrentWord currentWord={this.state.thisPlayer.currentWord} lettersCollected={this.state.thisPlayer.lettersCollected} />
                                   <CompletedWords words={this.state.thisPlayer.wordsCompleted} /></div>

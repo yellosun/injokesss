@@ -9,7 +9,14 @@ html {
 
 }
 
+.MuiCard-root-39 {
+    overflow: auto !important;
+}
 
+.message-box {
+    overflow: auto;
+    height: 300px;
+}
 
 /*********/
 /*NAV BAR*/
