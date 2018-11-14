@@ -29,12 +29,15 @@ export default class Game extends Component {
 
     setInitialState = (data) => {
         this.setState({socketId: data.socketId,
-                       players: data.state,
-                       thisPlayer: data.state.find(player => player.socketId === data.socketId)})
+                       players: data.state.players,
+                       thisPlayer: data.state.players.find(player => player.socketId === data.socketId),
+                       timer: data.state.timer})
     }
 
     setStateFromSocket = (data) => {
-        this.setState({players: data.state, thisPlayer: data.state.find(player => player.socketId === this.state.socketId)})
+        this.setState({players: data.state.players,
+                        thisPlayer: data.state.players.find(player => player.socketId === this.state.socketId),
+                        timer: data.state.timer})
     }
     
     receiveMessage = (message) => {
