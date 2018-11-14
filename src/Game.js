@@ -4,6 +4,9 @@ import Board from './components/Board'
 import Nav from './components/Nav'
 import CurrentWord from './components/CurrentWord'
 import CompletedWords from './components/CompletedWords'
+import Button from '@material-ui/core/Button'
+import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+import PauseIcon from '@material-ui/icons/Pause'
 
 export default class Game extends Component {
     componentDidMount() {
@@ -12,7 +15,7 @@ export default class Game extends Component {
 
     setupSocket = () => {
         // const url = "http://localhost:3000"
-        const url = "http://10.185.1.132:3000/"
+        const url = "http://192.168.1.75:3000/"
         const socket = require('socket.io-client')(url);
         socket.on('initialLoadData', this.setInitialState);
         socket.on('gameUpdate', this.setStateFromSocket);
@@ -57,13 +60,18 @@ export default class Game extends Component {
                 <div className = "App" tabIndex="0" onKeyDown={this.onKeyDown} >
                     <Nav />
                     <div className = 'row'>
-                        <Board players={this.state.players} />
+                        <div className = 'column'>
+                            <Board players={this.state.players} />
+                            <div className="row buttons">
+                                <Button variant="fab" className="play-btn" onClick={() => this.socket.emit("resume")}><PlayArrowIcon /></Button>
+                                <Button variant="fab" className="pause-btn" onClick={() => this.socket.emit("pause")}><PauseIcon /></Button>
+                            </div>
+                        </div>
                         <div className = 'column'>
                             <CurrentWord currentWord={this.state.thisPlayer.currentWord} lettersCollected={this.state.thisPlayer.lettersCollected} />
                             <CompletedWords words={this.state.thisPlayer.wordsCompleted} />
                         </div>
-                        <button onClick={() => this.socket.emit("pause")}>Pause</button>
-                        <button onClick={() => this.socket.emit("resume")}>Resume</button>
+
                     </div>
                 </div>
             )

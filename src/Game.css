@@ -1,20 +1,46 @@
+/*********/
+/*NAV BAR*/
+/*********/
+
 .nav {
     height: 80px;
 }
 
+.nav-title {
+    font-size: 25px;
+    font-weight: bold;
+    font-style: oblique;
+    padding: 0px 10px;
+    text-transform: uppercase;
+}
+
 .nav-secondary {
-    height: 10px;
-    background-color: #00695f;
+    height: 15px;
+    background-color: #1c54b2;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
 }
 
 .nav-primary {
-    height: 30px;
-    background-color: #009688;
+    height: 40px;
+    background-color: #5393ff;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
+
 }
+
+/****************/
+/* BOARD LAYOUT */
+/****************/
 
 .horn {
     display: none;
+}
+
+:focus {
+    outline-color: rgba(255, 255, 255, 0);
 }
 
 .board {
@@ -59,28 +85,27 @@
     height: 100%;
 }
 
-.score {
-    padding: 10px 12px;
-    font-size: 25px;
-    font-weight: bold;
-    border-radius: 100%;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+/**********************/
+/* PLAY/PAUSE BUTTONS */
+/**********************/
+
+.row .buttons {
+    margin-top: 20px;
 }
 
-@keyframes blinker {
-    /* 0% {
-        background-color: none;
-    }
-    25% {
-        background-color: none;
-    } */
-    50% {
-        background-color: limegreen;
-    }
-    /* 75% {
-        background-color: limegreen;
-    } */
+button.play-btn {
+    background-color: #8bc34a !important;
+    margin-right: 10px;
 }
+
+button.pause-btn {
+    background-color: #ffc400 !important;
+    margin-left: 10px;
+}
+
+/****************/
+/* CURRENT WORD */
+/****************/
 
 .current-card {
     width: 300px !important;
@@ -103,6 +128,36 @@
     margin-bottom: -10px;
 }
 
+/*******************/
+/* COMPLETED WORDS */
+/*******************/
+
+.score {
+    padding: 10px 12px;
+    border-radius: 100%;
+    background-color: rgba(0,0,0,.05) !important;
+}
+
+.MuiButton-label-2 {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+@keyframes blinker {
+    /* 0% {
+        background-color: none;
+    }
+    25% {
+        background-color: none;
+    } */
+    50% {
+        background-color: limegreen;
+    }
+    /* 75% {
+        background-color: limegreen;
+    } */
+}
+
 .card-header {
     display: flex;
     flex-flow: row;
@@ -115,16 +170,13 @@
     font-size: 30px;
 }
 
-:focus {
-    outline-color: rgba(255, 255, 255, 0);
-}
-
 .completed-card {
     height: 650px;
     padding: 20px 40px 30px;
+    width: 225px;
 }
 
-.MuiCard-root-1 {
+.MuiCard-root-1, .MuiCard-root-39 {
     overflow: inherit !important;
 }
 
