@@ -16,6 +16,11 @@ export default class Game extends Component {
     componentDidMount() {
         this.setupSocket()
         this.setState({ messages: [] })
+        this.playSong()
+    }
+
+    playSong = () => {
+        new Audio(require("./media/frenchsong.mp3")).play()
     }
 
     setupSocket = () => {
@@ -56,7 +61,6 @@ export default class Game extends Component {
     }
 
     onKeyDown = (event) => {
-        new Audio(require("./media/frenchsong.mp3")).play()
         switch (event.key) {
             case "ArrowUp":
                 this.socket.emit("changeFacing", {x: 0, y: -1})
