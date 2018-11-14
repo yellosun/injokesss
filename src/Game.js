@@ -15,7 +15,7 @@ export default class Game extends Component {
 
     setupSocket = () => {
         // const url = "http://localhost:3000"
-        const url = "http://10.0.0.79:3000/"
+        const url = "http://10.185.4.122:3000/"
         const socket = require('socket.io-client')(url);
         socket.on('initialLoadData', this.setInitialState);
         socket.on('gameUpdate', this.setStateFromSocket);
