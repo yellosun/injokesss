@@ -12,7 +12,7 @@ export default class Game extends Component {
 
     setupSocket = () => {
         // const url = "http://localhost:3000"
-        const url = "http://10.185.1.204:3000/"
+        const url = "http://10.185.1.132:3000/"
         const socket = require('socket.io-client')(url);
         socket.on('initialLoadData', this.setInitialState);
         socket.on('gameUpdate', this.setStateFromSocket);
@@ -20,15 +20,13 @@ export default class Game extends Component {
     }
 
     setInitialState = (data) => {
-        console.log("got initial data")
         this.setState({socketId: data.socketId,
                        players: data.state,
                        thisPlayer: data.state.find(player => player.socketId === data.socketId)})
     }
 
     setStateFromSocket = (data) => {
-        console.log("got some data")
-        console.log({players: data.state, thisPlayer: data.state.find(player => player.socketId === this.state.socketId)})
+        // console.log({players: data.state, thisPlayer: data.state.find(player => player.socketId === this.state.socketId)})
         this.setState({players: data.state, thisPlayer: data.state.find(player => player.socketId === this.state.socketId)})
     }
 
@@ -50,6 +48,10 @@ export default class Game extends Component {
         }
     }
 
+    handleButton = () => {
+        new Audio(require("./images/mlg-airhorn.mp3")).play()
+    }
+
     render() {
         if (this.state && this.state.players && this.state.players.length > 0 && this.state.players[0].currentWord) {
             return (
@@ -67,7 +69,12 @@ export default class Game extends Component {
                 </div>
             )
         } else {
-            return "I dunno what's happening"
+            return (
+                <div>
+                    <div>I dunno what's happening</div>
+                    <button onClick={this.handleButton}>play horn</button>
+                </div>
+            )
         }
     }
 }
