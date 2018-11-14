@@ -19,6 +19,28 @@ body {
     background-image: url('./images/background1.png');
 }
 
+.join-btn {
+
+}
+
+@keyframes tinker {
+    0% {
+        background-color: orange;
+    }
+    25% {
+        background-color: limegreen;
+    }
+    50% {
+        background-color: blue;
+    }
+    75% {
+        background-color: purple;
+    }
+    100% {
+        background-color: orange;
+    }
+}
+
 /************/
 /* CHAT BOX */
 /************/
@@ -194,18 +216,9 @@ button.pause-btn {
 }
 
 @keyframes blinker {
-    /* 0% {
-        background-color: none;
-    }
-    25% {
-        background-color: none;
-    } */
     50% {
         background-color: limegreen;
     }
-    /* 75% {
-        background-color: limegreen;
-    } */
 }
 
 .card-header {
