@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import Tile from './Tile'
 
 export default class Row extends PureComponent {
