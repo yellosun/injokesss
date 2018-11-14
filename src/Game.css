@@ -2,6 +2,15 @@ html {
     /* overflow: hidden; */
 }
 
+.chatbox-submit-btn {
+    width: 30px !important;
+    height: 25px !important;
+    margin-left: 10px !important;
+
+}
+
+
+
 /*********/
 /*NAV BAR*/
 /*********/
