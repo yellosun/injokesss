@@ -47,7 +47,7 @@
 }
 
 .collected-tile {
-    background-color: limegreen;
+    /* background-color: limegreen; */
     background-image: url("./images/woodTileLight.png");
 }
 

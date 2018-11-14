@@ -21,6 +21,7 @@ export default class Game extends Component {
 
     setInitialState = (data) => {
         console.log("got initial data")
+        console.log({players: data.state, thisPlayer: data.state.find(player => player.socketId === data.socketId)})
         this.setState({socketId: data.socketId,
                        players: data.state,
                        thisPlayer: data.state.find(player => player.socketId === data.socketId)})

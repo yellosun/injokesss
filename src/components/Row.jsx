@@ -6,6 +6,7 @@ export default class Row extends Component {
 
     const width = 20
     const tiles = []
+    console.log(this.props.players.map(player => player.color))
     for (var x = 0; x < width; x++) {
       let letterInTail = null
       let letterOnBoard = null
@@ -15,7 +16,8 @@ export default class Row extends Component {
           if (player.snake.history[i + 1].x === x &&
               player.snake.history[i + 1].y === this.props.y) {
             letterInTail = player.lettersCollected[i]
-            color = player.color            
+            color = player.color
+            console.log(color)
             break
           }
         }

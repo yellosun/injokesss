@@ -33,7 +33,8 @@ export default class Tile extends Component {
 
     if  (letterInTile !== null) {
         if (this.props.letterInTail) {
-            return <div className="collected-tile">{letterInTile}</div>
+          console.log(this.props.color)
+            return <div className="lettered-tile" style={{"background-color": this.props.color}}>{letterInTile}</div>
         } else {
             return <div className="lettered-tile">{letterInTile}</div>
         }
