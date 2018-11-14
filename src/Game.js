@@ -14,7 +14,7 @@ import PauseIcon from '@material-ui/icons/Pause'
 export default class Game extends Component {
     componentDidMount() {
         this.setupSocket()
-        this.setState({ messages: ['wowcoolgame', 'needsbetterwords', 'niceplaying', 'snakesssssss', 'imvotingforaword'] })
+        this.setState({ messages: [] })
     }
 
     setupSocket = () => {
@@ -23,6 +23,7 @@ export default class Game extends Component {
         const socket = require('socket.io-client')(url);
         socket.on('initialLoadData', this.setInitialState);
         socket.on('gameUpdate', this.setStateFromSocket);
+        socket.on('messageSent', this.receiveMessage);
         this.socket = socket
     }
 
@@ -34,6 +35,20 @@ export default class Game extends Component {
 
     setStateFromSocket = (data) => {
         this.setState({players: data.state, thisPlayer: data.state.find(player => player.socketId === this.state.socketId)})
+    }
+    
+    receiveMessage = (message) => {
+        this.setState({messages: [...this.state.messages, message]})
+    }
+
+    updateCurrentMessage = (event) => {
+        this.setState({currentMessage: event.target.value})
+        console.log(event.target.value)
+    }
+
+    sendMessage = () => {
+        this.socket.emit("sendMessage", this.state.currentMessage)
+        this.setState({currentMessage: ""})
     }
 
     onKeyDown = (event) => {
@@ -79,7 +94,10 @@ export default class Game extends Component {
                             {this.state.thisPlayer !== undefined
                                 ? <div><CurrentWord currentWord={this.state.thisPlayer.currentWord} lettersCollected={this.state.thisPlayer.lettersCollected} />
                                   <CompletedWords words={this.state.thisPlayer.wordsCompleted} /></div>
-                                : <div><Chatbox messages={this.state.messages}/>
+                                : <div><Chatbox messages={this.state.messages}
+                                                currentMessage={this.state.currentMessage}
+                                                sendMessage={this.sendMessage}
+                                                updateCurrentMessage={this.updateCurrentMessage} />
                                   <Button variant="contained" className="join-btn" onClick={this.handleJoin}>Be One With The Snake</Button></div>
                             }
                         </div>

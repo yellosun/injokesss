@@ -10,11 +10,16 @@ export default class Chatbox extends React.Component {
                 <div>
                     {messages.map(m=> <p>{m}</p>)}
                 </div>
-                <div className='row'>
-                    <input type='text' />
-                    <Button variant="fab" className='chatbox-submit-btn'/>
+                <div className='row' onKeyDown={this.keyPressed}>
+                    <input type='text' onChange={this.props.updateCurrentMessage} placeholder="hi idk snakes" value={this.props.currentMessage}/>
+                    <Button variant="fab" className='chatbox-submit-btn' onClick={this.props.sendMessage} />
                 </div>
             </Card>
         )
+    }
+
+    keyPressed = (event) => {
+        if (event.key == "Enter")
+            this.props.sendMessage()
     }
 }
