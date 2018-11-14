@@ -207,6 +207,11 @@ h1 {
 /* COMPLETED WORDS */
 /*******************/
 
+.completed-words {
+    height: 400px;
+    overflow-y: auto;
+}
+
 .score {
     padding: 10px 12px;
     border-radius: 100%;

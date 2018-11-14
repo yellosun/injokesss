@@ -25,7 +25,7 @@ export default class CompletedWords extends Component {
                     <Score score={this.props.score}/>
                 </div>
 
-                <div>
+                <div className="completed-words">
                     {this.props.words.map(word => {
                         if (injokes.includes(word)) {
                             return <div key={word} style={styles.completed}>{word}</div>

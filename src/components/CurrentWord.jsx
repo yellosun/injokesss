@@ -11,7 +11,7 @@ export default class CurrentWord extends Component {
                             : "current-word"}>
           <Card className="current-card">
               {currentWord !== null
-                ? 
+                ?
                 <div>
                     <div className="current-header">Your current word is:</div>
                     <h1>{this.highlightedLetters(currentWord.word, lettersCollected).map(
@@ -19,7 +19,7 @@ export default class CurrentWord extends Component {
                     )}</h1>
                 </div>
                 :
-                <div className="current-header">Snakeeeeeeeeeeeeeeeeeeess</div>
+                <div className="current-header">Waiting for end of voting period...</div>
               }
           </Card>
       </div>
